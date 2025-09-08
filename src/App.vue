@@ -28,7 +28,10 @@ onMounted(() => {
 
 <style scoped>
 #grid {
+  margin-top: 10px;
   display: grid;
+  overflow: hidden;
+  height: 100%;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 1;
 }
@@ -37,5 +40,6 @@ onMounted(() => {
 }
 .right-side {
   grid-column-end: span 2;
+  overflow: hidden;
 }
 </style>

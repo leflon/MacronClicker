@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { useGameStore } from '@/stores';
+import { formatNumber } from '@/lib/utils';
 
 const store = useGameStore();
 </script>
@@ -10,8 +11,8 @@ const store = useGameStore();
   </h1>
   <div>
     <h2>Dette publique</h2>
-    <h3>{{ Math.floor(store.currentScore) }}€</h3>
-    <h4>{{ store.debtPerSecond }}€ / sec</h4>
+    <h3>{{ formatNumber(store.currentScore) }}</h3>
+    <h4>{{ formatNumber(store.debtPerSecond) }} / sec</h4>
   </div>
 </template>
 

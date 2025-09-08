@@ -6,7 +6,7 @@ export const local: PowerUp = {
   description:
     "L'Élu local augmente la dette publique de {{rate}} par seconde.",
   basePrice: 15,
-  baseRate: 0.5,
+  baseRate: 1,
   unlockCondition: () => true,
 };
 
@@ -15,7 +15,7 @@ export const senator: PowerUp = {
   name: 'Sénateur',
   description: 'Le sénateur augmente la dette publique de {{rate}} par seconde',
   basePrice: 100,
-  baseRate: 1,
+  baseRate: 2,
   unlockCondition: (score: number) => score > 100,
 };
 
@@ -56,20 +56,6 @@ export const president: PowerUp = {
   basePrice: 62500,
   baseRate: 1250,
   unlockCondition: (score: number) => score > 62500,
-};
-
-// Ridiculous power-ups with complex unlock conditions
-export const jupiterAscension: PowerUp = {
-  id: 'jupiterAscension',
-  name: 'Ascension Jupitérienne',
-  description:
-    "Macron transcende vers Jupiter et augmente la dette de {{rate}} par seconde depuis l'espace.",
-  basePrice: 500000,
-  baseRate: 10000,
-  unlockCondition: (score: number, powerUps?: any) => {
-    const hasPresident = powerUps?.president?.count > 0;
-    return score > 300000 && hasPresident;
-  },
 };
 
 export const timeParadox: PowerUp = {

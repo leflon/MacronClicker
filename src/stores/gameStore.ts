@@ -94,12 +94,12 @@ export const useGameStore = defineStore('game', () => {
   // Auto-increment debt from power-ups
   function startAutoIncrement() {
     setInterval(() => {
-      const increment = Number((debtPerSecond.value / 10).toFixed(3));
+      const increment = Number((debtPerSecond.value / 100).toFixed(3));
       if (increment > 0) {
         currentScore.value += increment;
         cumulatedScore.value += increment;
       }
-    }, 100); // Every second
+    }, 10); // Every second
   }
 
   // Save/Load functionality

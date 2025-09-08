@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computePurchasePrice } from '@/lib/utils';
+import { computePurchasePrice, formatNumber } from '@/lib/utils';
 import { useGameStore } from '@/stores';
 import type { PowerUp } from '@/types/PowerUp';
 import { computed } from 'vue';
@@ -14,7 +14,10 @@ const price = computed(() =>
 const canBuy = computed(() => store.currentScore >= price.value);
 
 const description = computed(() =>
-  props.description.replace('{{rate}}', props.baseRate + '€'),
+  props.description.replace(
+    '{{rate}}',
+    `<b>${formatNumber(props.baseRate)}</b>`,
+  ),
 );
 
 function buy() {
@@ -30,19 +33,23 @@ function buy() {
     </div>
     <div class="right-side">
       <div class="name">{{ props.name }}</div>
-      <div class="desc">{{ description }}</div>
-      <div class="price">{{ price }}€</div>
+      <div class="desc" v-html="description"></div>
+      <div class="price">{{ formatNumber(price) }}</div>
       <div class="owned">{{ ownedCount }}</div>
     </div>
   </div>
 </template>
 
 <style scoped>
+* {
+  user-select: none;
+}
 .item {
   position: relative;
   display: flex;
   box-sizing: border-box;
   width: 90%;
+  height: 120px;
   margin: 10px auto;
   background: white;
   padding: 5px 10px;
@@ -84,11 +91,13 @@ function buy() {
   transition: opacity 0.1s;
 }
 .image {
+  height: 100%;
   position: relative;
   width: 20%;
   min-width: 70px;
   & img {
     width: 100%;
+    height: 100%;
     object-fit: contain;
     object-position: bottom center;
   }
@@ -97,7 +106,7 @@ function buy() {
   margin-left: 10px;
 }
 .desc {
-  font-size: 10pt;
+  font-size: 12pt;
   width: 90%;
 }
 .name {
@@ -105,12 +114,13 @@ function buy() {
 }
 .owned {
   position: absolute;
-  font: 800 50pt 'Marianne';
+  font: 800 30pt 'Marianne';
   text-align: right;
   opacity: 0.8;
-  top: 50%;
-  right: 5px;
-  transform: translateY(-50%);
+  bottom: 0;
+  right: 2px;
+  line-height: 25pt;
+  overflow: hidden;
 }
 .price {
   font: 600 12pt 'Marianne';
