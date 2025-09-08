@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <style>
+      @font-face {
+        font-family: 'Marianne';
+        font-style: normal;
+        font-weight: 400;
+        src: url(/fonts/Marianne-Regular.woff2) format('woff2');
+      }
+      @font-face {
+        font-family: 'Marianne';
+        font-style: normal;
+        font-weight: 500;
+        src: url(/fonts/Marianne-Medium.woff2) format('woff2');
+      }
+      @font-face {
+        font-family: 'Marianne';
+        font-style: normal;
+        font-weight: 600;
+        src: url(/fonts/Marianne-Bold.woff2) format('woff2');
+      }
+      @font-face {
+        font-family: 'Marianne';
+        font-style: normal;
+        font-weight: 800;
+        src: url(/fonts/Marianne-ExtraBold.woff2) format('woff2');
+      }
+      html {
+        background: url(/elysee.webp) center center / cover no-repeat;
+        height: 100%;
+      }
+      #app {
+        font-family: 'Marianne';
+        display: contents;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
