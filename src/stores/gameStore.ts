@@ -28,6 +28,13 @@ export const useGameStore = defineStore('game', () => {
     );
   });
 
+  const totalPowerUps = computed(() => {
+    return Array.from(ownedPowerUps.value.values()).reduce(
+      (acc, curr) => acc + curr,
+      0,
+    );
+  });
+
   const debtPerSecond = computed(() => {
     let total = 0;
     for (const [powerUpId, count] of ownedPowerUps.value) {
@@ -142,6 +149,7 @@ export const useGameStore = defineStore('game', () => {
     cumulatedScore,
     ownedPowerUps,
     ownedMultipliers,
+    totalPowerUps,
 
     // Getters
     gameState,

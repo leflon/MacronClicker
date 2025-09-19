@@ -37,6 +37,9 @@ onMounted(() => {
 }
 .left-side {
   grid-column-end: span 4;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 .right-side {
   grid-column-end: span 2;
