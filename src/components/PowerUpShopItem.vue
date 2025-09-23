@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { computePurchasePrice, formatNumber } from '@/lib/utils';
 import { useGameStore } from '@/stores';
+import * as Multipliers from '@/constants/Multipliers';
 import type { PowerUp } from '@/types/PowerUp';
 import { computed } from 'vue';
 
@@ -13,10 +14,21 @@ const price = computed(() =>
 );
 const canBuy = computed(() => store.currentScore >= price.value);
 
+const mutiplyRate = computed(() => {
+  const owned = store.ownedMultipliers;
+  const multiplierList = Object.values(Multipliers);
+  const result = multiplierList
+    .filter((m) => owned.includes(m.id) && m.impacts.includes(props.id))
+    .map((m) => m.rate)
+    .reduce((acc, rate) => acc + rate, 0);
+  console.log(result);
+  return Math.max(result, 1);
+});
+
 const description = computed(() =>
   props.description.replace(
     '{{rate}}',
-    `<b>${formatNumber(props.baseRate)}</b>`,
+    `<b>${formatNumber(props.baseRate * mutiplyRate.value)}</b>`,
   ),
 );
 

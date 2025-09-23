@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useGameStore } from '@/stores';
 import PowerUpShopItem from './PowerUpShopItem.vue';
-import { computed } from 'vue';
+import MultiplierShopItem from './MultiplierShopItem.vue';
+import { computed, ref } from 'vue';
 
 const store = useGameStore();
 
@@ -14,7 +15,7 @@ const powerups = computed(() => {
 
 <template>
   <div class="shop">
-    <h1>Boutique d'améliorations</h1>
+    <h1>Améliorations</h1>
     <div class="list">
       <PowerUpShopItem v-bind="powerup" v-for="powerup of powerups" />
     </div>
@@ -22,17 +23,8 @@ const powerups = computed(() => {
 </template>
 
 <style scoped>
-h1 {
-  width: max-content;
-  margin: 0 auto;
-  color: white;
-  background: #0009;
-  padding: 5px 10px;
-  font-size: 18pt;
-  font-weight: 500;
-  border-radius: 10em;
-}
 .shop {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -41,6 +33,7 @@ h1 {
   flex: 1;
   position: relative;
   overflow: auto;
+  box-sizing: border-box;
 }
 
 .list::-webkit-scrollbar {

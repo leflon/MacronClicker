@@ -33,6 +33,7 @@ h1,
 h2,
 h3,
 h4 {
+  color: #000;
   font-weight: 500;
   margin: 5px auto;
 }

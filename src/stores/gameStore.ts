@@ -28,6 +28,15 @@ export const useGameStore = defineStore('game', () => {
     );
   });
 
+  const availableMultipliers = computed(() => {
+    const multiplierList = Object.values(Multipliers);
+    return multiplierList.filter(
+      (multiplier) =>
+        multiplier.unlockCondition(cumulatedScore.value) &&
+        !ownedMultipliers.value.includes(multiplier.id),
+    );
+  });
+
   const totalPowerUps = computed(() => {
     return Array.from(ownedPowerUps.value.values()).reduce(
       (acc, curr) => acc + curr,
@@ -48,8 +57,9 @@ export const useGameStore = defineStore('game', () => {
             mult.impacts.includes(powerUpId), // impacts the current power up
         )
         .map((mult) => mult.rate)
-        .reduce((acc, curr) => curr + acc, 1);
-      total += baseRate * count * totalMult;
+        .reduce((acc, curr) => curr + acc, 0);
+      console.log(powerUpId, totalMult);
+      total += baseRate * count * Math.max(1, totalMult);
     }
     return total;
   });
@@ -154,6 +164,7 @@ export const useGameStore = defineStore('game', () => {
     // Getters
     gameState,
     availablePowerUps,
+    availableMultipliers,
     debtPerSecond,
 
     // Actions

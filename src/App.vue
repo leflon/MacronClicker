@@ -3,6 +3,7 @@ import { onMounted } from 'vue';
 import Header from './components/Header.vue';
 import Macron from './components/Macron.vue';
 import PowerUpShop from './components/PowerUpShop.vue';
+import MultiplierShop from './components/MultiplierShop.vue';
 import { useGameStore } from './stores';
 import { onUnmounted } from 'vue';
 
@@ -21,12 +22,23 @@ onMounted(() => {
       <Macron />
     </div>
     <div class="right-side">
+      <MultiplierShop />
       <PowerUpShop />
     </div>
   </div>
 </template>
 
-<style scoped>
+<style>
+h1 {
+  width: max-content;
+  margin: 0 auto;
+  color: white;
+  background: #0009;
+  padding: 5px 10px;
+  font-size: 18pt;
+  font-weight: 500;
+  border-radius: 10em;
+}
 #grid {
   margin-top: 10px;
   display: grid;
