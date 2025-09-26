@@ -6,45 +6,25 @@ const store = useGameStore();
 </script>
 
 <template>
-  <h1>
-    <span>République Française Présidence</span>
-  </h1>
-  <div>
-    <h2>Dette publique</h2>
-    <h3>{{ formatNumber(store.currentScore) }}</h3>
-    <h4>{{ formatNumber(store.debtPerSecond) }} / sec</h4>
+  <div class="header-container">
+    <h2>
+      <span>République Française Présidence</span>
+    </h2>
+    <div class="debt-info">
+      <h3>Dette publique</h3>
+      <h4>{{ formatNumber(store.currentScore) }}</h4>
+      <h5>{{ formatNumber(store.debtPerSecond) }} / sec</h5>
+    </div>
   </div>
 </template>
 
 <style scoped>
-* {
+.header-container {
   text-align: center;
-}
-div {
-  margin: 20px auto;
-  background: #0008;
-  backdrop-filter: blur(2px);
-  color: white;
-  width: max-content;
-  padding: 5px 40px;
-  border-radius: 8px;
-}
-h1,
-h2,
-h3,
-h4 {
-  color: #000;
-  font-weight: 500;
-  margin: 5px auto;
+  width: 100%;
 }
 
-h3 {
-  font-size: 35px;
-  font-weight: 800;
-  color: #e63322;
-}
-
-h1 {
+h2 {
   background: linear-gradient(
     121deg,
     rgba(0, 33, 83, 1) 0%,
@@ -55,8 +35,38 @@ h1 {
   );
   font-weight: 800;
   width: max-content;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 5px 50px;
   border-radius: 8px;
+  color: #000;
+}
+
+.debt-info {
+  margin: 20px auto;
+  background: #0008;
+  backdrop-filter: blur(2px);
+  color: white;
+  width: max-content;
+  padding: 5px 40px;
+  border-radius: 8px;
+}
+
+h3,
+h4,
+h5 {
+  color: #000;
+  font-weight: 500;
+  margin: 5px auto;
+}
+
+h4 {
+  font-size: 35px;
+  font-weight: 800;
+  color: #e63322;
+}
+
+h5 {
+  font-size: 16px;
+  color: #000;
 }
 </style>

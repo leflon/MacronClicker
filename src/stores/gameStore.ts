@@ -1,12 +1,15 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import type { GameState } from '@/types/GameState';
 import * as PowerUps from '@/constants/PowerUps';
 import * as Multipliers from '@/constants/Multipliers';
 import type { PowerUp } from '@/types/PowerUp';
+import { useAuthStore } from './authStore';
 
 export const useGameStore = defineStore('game', () => {
   const BASE_SCORE = 0;
+  const authStore = useAuthStore();
+
   // State
   const currentScore = ref<number>(BASE_SCORE);
   const cumulatedScore = ref<number>(BASE_SCORE);
@@ -116,41 +119,61 @@ export const useGameStore = defineStore('game', () => {
         currentScore.value += increment;
         cumulatedScore.value += increment;
       }
-    }, 10); // Every second
+    }, 10);
   }
 
-  // Save/Load functionality
+  // Watch for user changes and reload game data
+  watch(
+    () => authStore.currentUser,
+    (newUser) => {
+      if (newUser) {
+        loadGame();
+      } else {
+        resetToDefaults();
+      }
+    },
+  );
+
   function saveGame() {
-    const saveData = {
+    if (!authStore.currentUser) {
+      return;
+    }
+
+    authStore.updateUserData({
       currentScore: Math.floor(currentScore.value),
       cumulatedScore: Math.floor(cumulatedScore.value),
       ownedPowerUps: Array.from(ownedPowerUps.value.entries()),
-      ownerMultipliers: ownedMultipliers.value,
-    };
-    localStorage.setItem('macronclicker:save', JSON.stringify(saveData));
+      ownedMultipliers: ownedMultipliers.value,
+    });
   }
 
   function loadGame() {
-    const saveData = localStorage.getItem('macronclicker:save');
-    if (saveData) {
-      try {
-        const parsed = JSON.parse(saveData);
-        currentScore.value = parsed.currentScore || 0;
-        cumulatedScore.value = parsed.cumulatedScore || 0;
-        ownedPowerUps.value = new Map(parsed.ownedPowerUps || []);
-        ownedMultipliers.value = parsed.ownerMultipliers || [];
-      } catch (error) {
-        console.error('Failed to load game:', error);
-      }
+    if (!authStore.currentUser) {
+      resetToDefaults();
+      return;
+    }
+
+    const userData = authStore.getCurrentUserData();
+    if (userData) {
+      currentScore.value = userData.currentScore || 0;
+      cumulatedScore.value = userData.cumulatedScore || 0;
+      ownedPowerUps.value = new Map(userData.ownedPowerUps || []);
+      ownedMultipliers.value = userData.ownedMultipliers || [];
+    } else {
+      resetToDefaults();
     }
   }
 
   function resetGame() {
-    currentScore.value = 0;
-    cumulatedScore.value = 0;
+    resetToDefaults();
+    saveGame();
+  }
+
+  function resetToDefaults() {
+    currentScore.value = BASE_SCORE;
+    cumulatedScore.value = BASE_SCORE;
     ownedPowerUps.value.clear();
     ownedMultipliers.value = [];
-    localStorage.removeItem('macronclicker:save');
   }
 
   return {

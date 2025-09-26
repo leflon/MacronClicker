@@ -5,8 +5,8 @@ export const local: PowerUp = {
   name: 'Élu local',
   description:
     "L'Élu local augmente la dette publique de {{rate}} par seconde.",
-  basePrice: 1.5e1,
-  baseRate: 1,
+  basePrice: 10,
+  baseRate: 25,
   unlockCondition: () => true,
 };
 
@@ -14,18 +14,18 @@ export const senator: PowerUp = {
   id: 'senator',
   name: 'Sénateur',
   description: 'Le sénateur augmente la dette publique de {{rate}} par seconde',
-  basePrice: 1e2,
-  baseRate: 1,
-  unlockCondition: (score: number) => score > 1e2,
+  basePrice: 60,
+  baseRate: 60,
+  unlockCondition: (score: number) => score > 50,
 };
 
 export const deputy: PowerUp = {
   id: 'deputy',
   name: 'Député',
   description: 'Le député augmente la dette publique de {{rate}} par seconde.',
-  basePrice: 1.1e3,
-  baseRate: 8,
-  unlockCondition: (score: number) => score > 5e2,
+  basePrice: 500,
+  baseRate: 200,
+  unlockCondition: (score: number) => score > 250,
 };
 
 export const minister: PowerUp = {
@@ -33,9 +33,9 @@ export const minister: PowerUp = {
   name: 'Ministre',
   description:
     'Le ministre augmente la dette publique de {{rate}} par seconde.',
-  basePrice: 1.2e4,
-  baseRate: 4.7e1,
-  unlockCondition: (score: number) => score > 2.5e3,
+  basePrice: 6000,
+  baseRate: 80,
+  unlockCondition: (score: number) => score > 1200,
 };
 
 export const primeMinister: PowerUp = {
@@ -43,9 +43,9 @@ export const primeMinister: PowerUp = {
   name: 'Premier Ministre',
   description:
     'Le Premier Ministre augmente la dette publique de {{rate}} par seconde.',
-  basePrice: 1.3e5,
-  baseRate: 2.6e2,
-  unlockCondition: (score: number) => score > 1.25e4,
+  basePrice: 35000,
+  baseRate: 400,
+  unlockCondition: (score: number) => score > 7000,
 };
 
 export const secretaryGeneral: PowerUp = {
@@ -53,9 +53,9 @@ export const secretaryGeneral: PowerUp = {
   name: 'Secrétaire général',
   description:
     'Le secrétaire général augmente la dette publique de {{rate}} par seconde.',
-  basePrice: 1.4e6,
-  baseRate: 1.4e3,
-  unlockCondition: (score: number) => score > 6.25e4,
+  basePrice: 120000,
+  baseRate: 2500,
+  unlockCondition: (score: number) => score > 40000,
 };
 
 export const president: PowerUp = {
@@ -63,7 +63,7 @@ export const president: PowerUp = {
   name: 'Ancien Président de la République',
   description:
     "Les privilèges d'ancien Président augmentent la dette publique de {{rate}} par seconde.",
-  basePrice: 1.4e6,
-  baseRate: 1.4e3,
-  unlockCondition: (score: number) => score > 6.25e4,
+  basePrice: 120000,
+  baseRate: 2500,
+  unlockCondition: (score: number) => score > 40000,
 };

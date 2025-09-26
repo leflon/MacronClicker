@@ -6,17 +6,100 @@ export const campaignPromise: Multiplier = {
   description:
     'Les promesses non tenues doublent la dette générée par les élus locaux',
   impacts: ['local'],
-  rate: 2,
+  rate: 2.5,
   price: 250,
   unlockCondition: (score: number) => score > 200,
+};
+
+export const legacyOfLocalGovernance: Multiplier = {
+  id: 'legacyOfLocalGovernance',
+  name: 'Héritage des Élus Locaux',
+  description:
+    "L'expérience accumulée multiplie la dette des élus locaux par 10",
+  impacts: ['local'],
+  rate: 10,
+  price: 100000,
+  unlockCondition: (score: number) => score > 100000,
+};
+
+export const renaissanceLocale: Multiplier = {
+  id: 'renaissanceLocale',
+  name: 'Renaissance Locale',
+  description:
+    'La puissance locale explose et multiplie la dette locale par 25',
+  impacts: ['local'],
+  rate: 25,
+  price: 1000000,
+  unlockCondition: (score: number) => score > 1000000,
+};
+
+export const senatEternel: Multiplier = {
+  id: 'senatEternel',
+  name: 'Sénat Éternel',
+  description:
+    'Le Sénat devient tout-puissant et multiplie la dette sénatoriale par 50',
+  impacts: ['senator'],
+  rate: 50,
+  price: 5000000,
+  unlockCondition: (score: number) => score > 5000000,
+};
+
+export const soulevementPopulaire: Multiplier = {
+  id: 'soulevementPopulaire',
+  name: 'Soulèvement Populaire',
+  description:
+    'Le peuple se soulève et multiplie la dette des élus locaux et des députés par 100',
+  impacts: ['local', 'deputy'],
+  rate: 100,
+  price: 10000000,
+  unlockCondition: (score: number) => score > 10000000,
+};
+
+export const hyperinflation: Multiplier = {
+  id: 'hyperinflation',
+  name: 'Hyperinflation',
+  description:
+    "L'économie s'effondre et multiplie la dette de tous les pouvoirs par 100",
+  impacts: [
+    'local',
+    'senator',
+    'deputy',
+    'minister',
+    'primeMinister',
+    'president',
+  ],
+  rate: 100,
+  price: 50000000,
+  unlockCondition: (score: number) => score > 50000000,
+};
+
+export const senatorialTradition: Multiplier = {
+  id: 'senatorialTradition',
+  name: 'Tradition Sénatoriale',
+  description: 'Les traditions du Sénat multiplient la dette sénatoriale par 8',
+  impacts: ['senator'],
+  rate: 8,
+  price: 250000,
+  unlockCondition: (score: number) => score > 250000,
+};
+
+export const grassrootsMovement: Multiplier = {
+  id: 'grassrootsMovement',
+  name: 'Mouvement de Base',
+  description:
+    "L'énergie populaire multiplie la dette des élus locaux et des députés par 5",
+  impacts: ['local', 'deputy'],
+  rate: 5,
+  price: 500000,
+  unlockCondition: (score: number) => score > 500000,
 };
 
 export const corruptionScandal: Multiplier = {
   id: 'corruptionScandal',
   name: 'Scandale de Corruption',
-  description: 'Les affaires douteuses multiplient la dette locale par 2.5',
+  description: 'Les affaires douteuses multiplient la dette locale par 3',
   impacts: ['local'],
-  rate: 2.5,
+  rate: 3,
   price: 800,
   unlockCondition: (score: number) => score > 600,
 };
@@ -223,36 +306,77 @@ export const taxHaven: Multiplier = {
   unlockCondition: (score: number) => score > 500000,
 };
 
-export const digitalFailure: Multiplier = {
-  id: 'digitalFailure',
-  name: 'Révolution Numérique Ratée',
+export const secretaryGeneralPower: Multiplier = {
+  id: 'secretaryGeneralPower',
+  name: 'Pouvoir du Secrétaire Général',
+  description: 'Le secrétaire général multiplie sa dette par 12',
+  impacts: ['secretaryGeneral'],
+  rate: 12,
+  price: 300000,
+  unlockCondition: (score: number) => score > 120000,
+};
+
+export const secretaryGeneralLegacy: Multiplier = {
+  id: 'secretaryGeneralLegacy',
+  name: 'Héritage du Secrétaire Général',
+  description: "L'héritage multiplie la dette du secrétaire général par 40",
+  impacts: ['secretaryGeneral'],
+  rate: 40,
+  price: 2000000,
+  unlockCondition: (score: number) => score > 1000000,
+};
+
+export const undergroundAdminNetwork: Multiplier = {
+  id: 'undergroundAdminNetwork',
+  name: 'Réseau Administratif Souterrain',
   description:
-    "La digitalisation foireuse de l'État amplifie les paradoxes temporels",
-  impacts: ['timeParadox'],
-  rate: 10,
+    'Un réseau invisible multiplie la dette du secrétaire général par 50',
+  impacts: ['secretaryGeneral'],
+  rate: 50,
   price: 5000000,
   unlockCondition: (score: number) => score > 2000000,
 };
 
-export const dysfunctionalAI: Multiplier = {
-  id: 'dysfunctionalAI',
-  name: 'IA Politique Dysfonctionnelle',
-  description: 'Une IA qui gère mal la dette politique multiverselle',
-  impacts: ['multiverse'],
-  rate: 15,
-  price: 25000000,
+export const absoluteSecretaryPower: Multiplier = {
+  id: 'absoluteSecretaryPower',
+  name: 'Pouvoir Absolu du Secrétaire',
+  description:
+    'Le secrétaire général règne sans partage et multiplie sa dette par 200',
+  impacts: ['secretaryGeneral'],
+  rate: 200,
+  price: 20000000,
   unlockCondition: (score: number) => score > 10000000,
 };
 
-export const quantumEconomics: Multiplier = {
-  id: 'quantumEconomics',
-  name: 'Économie Quantique',
+export const bureaucraticSingularity: Multiplier = {
+  id: 'bureaucraticSingularity',
+  name: 'Singularité Bureaucratique',
   description:
-    "L'économie entre dans une dimension supérieure et amplifie la singularité",
-  impacts: ['economicSingularity'],
-  rate: 100,
-  price: 500000000,
+    'La bureaucratie atteint un nouveau niveau et multiplie la dette du secrétaire général par 1000',
+  impacts: ['secretaryGeneral'],
+  rate: 1000,
+  price: 200000000,
   unlockCondition: (score: number) => score > 100000000,
+};
+
+export const presidentialSupremacy: Multiplier = {
+  id: 'presidentialSupremacy',
+  name: 'Suprématie Présidentielle',
+  description: 'Le président multiplie sa dette par 15',
+  impacts: ['president'],
+  rate: 15,
+  price: 500000,
+  unlockCondition: (score: number) => score > 250000,
+};
+
+export const presidentialLegacy: Multiplier = {
+  id: 'presidentialLegacy',
+  name: 'Héritage Présidentiel',
+  description: "L'héritage présidentiel multiplie la dette du président par 60",
+  impacts: ['president'],
+  rate: 60,
+  price: 5000000,
+  unlockCondition: (score: number) => score > 2000000,
 };
 
 export const globalConspiracy: Multiplier = {
@@ -277,9 +401,9 @@ export const megalomania: Multiplier = {
   id: 'megalomania',
   name: 'Mégalomanie Présidentielle',
   description:
-    "L'ego démesuré du chef de l'État dépasse les dimensions physiques",
-  impacts: ['president', 'timeParadox', 'multiverse'],
-  rate: 8,
+    "L'ego démesuré du chef de l'État multiplie la dette présidentielle par 25",
+  impacts: ['president'],
+  rate: 25,
   price: 2000000,
   unlockCondition: (score: number) => score > 1500000,
 };

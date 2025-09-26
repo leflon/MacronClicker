@@ -4,14 +4,15 @@ import Header from './components/Header.vue';
 import Macron from './components/Macron.vue';
 import PowerUpShop from './components/PowerUpShop.vue';
 import MultiplierShop from './components/MultiplierShop.vue';
+import AccountManager from './components/AccountManager.vue';
 import { useGameStore } from './stores';
-import { onUnmounted } from 'vue';
 
-const store = useGameStore();
+const gameStore = useGameStore();
+
 onMounted(() => {
-  store.loadGame();
-  store.startAutoIncrement();
-  setInterval(store.saveGame, 10000);
+  gameStore.loadGame();
+  gameStore.startAutoIncrement();
+  setInterval(gameStore.saveGame, 10000);
 });
 </script>
 
@@ -26,6 +27,7 @@ onMounted(() => {
       <PowerUpShop />
     </div>
   </div>
+  <AccountManager />
 </template>
 
 <style>
@@ -39,6 +41,7 @@ h1 {
   font-weight: 500;
   border-radius: 10em;
 }
+
 #grid {
   margin-top: 10px;
   display: grid;
@@ -56,5 +59,7 @@ h1 {
 .right-side {
   grid-column-end: span 2;
   overflow: hidden;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 </style>
