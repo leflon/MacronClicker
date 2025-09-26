@@ -14,6 +14,8 @@ const price = computed(() =>
 );
 const canBuy = computed(() => store.currentScore >= price.value);
 
+const BASE_URL = import.meta.env.VITE_PUBLIC_BASE_URL || '';
+
 const mutiplyRate = computed(() => {
   const owned = store.ownedMultipliers;
   const multiplierList = Object.values(Multipliers);
@@ -41,7 +43,7 @@ function buy() {
   <div class="item" :data-canBuy="canBuy" @click="buy">
     <div class="buy-overlay" v-if="canBuy">Acheter</div>
     <div class="image">
-      <img :src="`${import.meta.env.BASE_URL}img/powerup/${props.id}.webp`" />
+      <img :src="`${BASE_URL}img/powerup/${props.id}.webp`" />
     </div>
     <div class="right-side">
       <div class="name">{{ props.name }}</div>

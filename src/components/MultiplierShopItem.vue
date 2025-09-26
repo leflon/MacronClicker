@@ -9,6 +9,8 @@ const emit = defineEmits(['focus', 'click']);
 
 const props = defineProps<Multiplier>();
 
+const BASE_URL = import.meta.env.VITE_PUBLIC_BASE_URL || '';
+
 const canBuy = computed(() => store.currentScore > props.price);
 </script>
 
@@ -24,7 +26,7 @@ const canBuy = computed(() => store.currentScore > props.price);
       <img
         height="24"
         v-for="(powerup, i) in props.impacts"
-        :src="`${import.meta.env.BASE_URL}img/powerup/${powerup}.webp`"
+        :src="`${BASE_URL}img/powerup/${powerup}.webp`"
         :alt="powerup"
         :style="{ left: `${i * 5}px` }"
       />

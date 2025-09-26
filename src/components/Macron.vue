@@ -10,9 +10,11 @@ const container = useTemplateRef('container');
 const canvas = useTemplateRef('canvas');
 let ctx: CanvasRenderingContext2D;
 
+const BASE_URL = import.meta.env.VITE_PUBLIC_BASE_URL || '';
+
 const powerUpImages = Object.values(PowerUps).map((p) => {
   const image = new Image();
-  image.src = `${import.meta.env.BASE_URL}img/powerup/${p.id}.webp`;
+  image.src = `${BASE_URL}img/powerup/${p.id}.webp`;
   return { id: p.id, image };
 });
 
