@@ -27,7 +27,6 @@ const powerups = computed(() => {
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 .list {
   flex: 1;
