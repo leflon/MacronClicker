@@ -12,7 +12,7 @@ let ctx: CanvasRenderingContext2D;
 
 const powerUpImages = Object.values(PowerUps).map((p) => {
   const image = new Image();
-  image.src = `/img/powerup/${p.id}.webp`;
+  image.src = `${import.meta.env.BASE_URL}img/powerup/${p.id}.webp`;
   return { id: p.id, image };
 });
 

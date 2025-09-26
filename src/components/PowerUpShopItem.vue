@@ -41,7 +41,7 @@ function buy() {
   <div class="item" :data-canBuy="canBuy" @click="buy">
     <div class="buy-overlay" v-if="canBuy">Acheter</div>
     <div class="image">
-      <img :src="`/img/powerup/${props.id}.webp`" />
+      <img :src="`${import.meta.env.BASE_URL}img/powerup/${props.id}.webp`" />
     </div>
     <div class="right-side">
       <div class="name">{{ props.name }}</div>

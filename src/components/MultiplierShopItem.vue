@@ -24,7 +24,7 @@ const canBuy = computed(() => store.currentScore > props.price);
       <img
         height="24"
         v-for="(powerup, i) in props.impacts"
-        :src="`/img/powerup/${powerup}.webp`"
+        :src="`${import.meta.env.BASE_URL}img/powerup/${powerup}.webp`"
         :alt="powerup"
         :style="{ left: `${i * 5}px` }"
       />
